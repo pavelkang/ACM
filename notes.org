@@ -1,0 +1,30 @@
+* PKU Summer School
+  User ID  : pavelkang
+  password : kaikai
+** Day 1
+*** Interval Tree
+    - 是一棵二叉树， 同一层的节点不重叠，连续，加起来等于总区间
+      叶子节点是单位长度
+    - 对于某一个节点[a, b], 左子结点是[a, (a+b)/2], 右结点是[(a+b)/2+1, b]
+    - 区间长度是n的话，就有n个子节点，则总的结点数目 <= 2n-1.
+    - 分解：
+      如果某节点的区间完全属于被查找区间，则称为“终止结点”。每层终止结点不超过2个[证明]。所以 log(N).
+    - 建树：
+      BuildTree (root, l, r) {
+        initialize root;
+        if (l!=r) {root左右分别建树}
+      }
+    - 存储：
+      指针
+    struct Node {
+    int L, R;
+    int minV, maxV;
+    CNode *pLeft, *pRight;
+    };
+      数组： 左子结点下标 2*i+1， 右 2*i+2. 因为有2n-1个结点，所以开 4n 长度的就可以
+    - 离散化 (poj 2528)
+      如果区间端点不是整数，或者区间太大导致MLE，则需要离散化然后建树
+
+
+
+*** Binary Indexed Tree (BIT) / Fenwick Tree
