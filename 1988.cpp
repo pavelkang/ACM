@@ -9,7 +9,7 @@ int sum[MAX]; // # sum of the stack
 int getRoot(int x) {
   if (x == parent[x])
     return x;
-  int t = getRoot(x);
+  int t = getRoot(parent[x]);
   under[x] += under[parent[x]];
   parent[x] = t;
   return parent[x];
@@ -27,8 +27,8 @@ void stack(int x, int y) {
   if (rootX == rootY)
     return ;
   parent[rootY] = rootX;
-  sum[rootY] += sum[rootX];
   under[rootY] = sum[rootX];
+  sum[rootX] += sum[rootY];
 }
 int main() {
   // Initialize
