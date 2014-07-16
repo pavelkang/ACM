@@ -25,6 +25,26 @@
     - 离散化 (poj 2528)
       如果区间端点不是整数，或者区间太大导致MLE，则需要离散化然后建树
 
-
-
 *** Binary Indexed Tree (BIT) / Fenwick Tree
+    - 对于A, 我们创建数组C，使得：
+      C[i] = A[i - lowbit(i) +1] + ... + A[i]
+      i 从 1 开始算， lowbit(x) = x & (-x)
+    - 用处：快速求任意区间的和　a[i] + ... + a[j]
+      复杂度 log(N). 求sum(k)是log(N), 更新是log(N)
+    - 求sum(k):
+      sum(k) = C[n_1] + ... + c[n_m], n_m = k
+      n_i-1 = n_i - lowbit(n_i)
+      这个操作是log(N)， 因为lowbit是二进制的一个1， 而最多有log(N)个1
+    - 更新Ai
+      如果Ai更新了，C[n_1], ... ,C[n_m]都要更新， n_i = i, n_i+1 = n_i + lowbit(n_i)
+    - 证明：
+      a_i 更新了， 根据C的定义， c[i]要更新
+      c[i]更新， c[i+lowbit(i)]也要跟着更新 [证明略]
+      再证明其他C元素不需要更新
+    - 建树状数组C需要O(N)
+      因为c[k] = sum(k) - sum(k-lowbit(k))
+
+
+** Day 2
+*** Union Find
+*** Trie
