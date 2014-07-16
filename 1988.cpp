@@ -39,7 +39,7 @@ int main() {
   }
   // scan commands
   scanf("%d", &P);
-  for(int i=0; i<P; ++i) {
+  while(P--){
     char cmd[20];
     scanf("%s", cmd);
     if (cmd[0] == 'M') {
